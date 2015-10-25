@@ -2,11 +2,13 @@ consul-agent:
     image: consul-agent
     links:
         - consul-server:consul-server
+        - haproxy:haproxy
     hostname: "docker-agent"
-    command: /bin/sh /entrypoint.sh
     volumes:
         - ./docker-consul/0.5/consul-agent/config:/config
         - ./docker-consul/0.5/consul-agent/entrypoint.sh:/entrypoint.sh
+    # command: /bin/sh /entrypoint.sh
+    command: tail -f /dev/null
 
 consul-server:
     image: consul-server
@@ -18,5 +20,11 @@ consul-server:
     volumes:
         - ./docker-consul/0.5/consul-server/config:/config
         - ./docker-consul/0.5/consul-server/entrypoint.sh:/entrypoint.sh
-    # command: /bin/sh /entrypoint.sh
+    command: /bin/sh /entrypoint.sh
 
+haproxy:
+    image: haproxy
+    volumes:
+        - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    # ports:
+    #     - "80:80"
