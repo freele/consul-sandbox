@@ -1,0 +1,1 @@
+/bin/consul agent -config-dir=/config -join $CONSUL_SERVER_PORT_53_UDP_ADDR

@@ -1,0 +1,11 @@
+{
+	"client_addr": "0.0.0.0",
+	"data_dir": "/data",
+	"leave_on_terminate": true,
+	"ui_dir": "/ui",
+	"server": true,
+	"bootstrap_expect": 1,
+	"dns_config": {
+		"allow_stale": false
+	}
+}

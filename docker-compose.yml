@@ -1,0 +1,22 @@
+consul-agent:
+    image: consul-agent
+    links:
+        - consul-server:consul-server
+    hostname: "docker-agent"
+    command: /bin/sh /entrypoint.sh
+    volumes:
+        - ./docker-consul/0.5/consul-agent/config:/config
+        - ./docker-consul/0.5/consul-agent/entrypoint.sh:/entrypoint.sh
+
+consul-server:
+    image: consul-server
+    ports:
+        - "8500:8500"
+        - "8400:8400"
+        - "8600:53/udp"
+    hostname: "consul-server"
+    volumes:
+        - ./docker-consul/0.5/consul-server/config:/config
+        - ./docker-consul/0.5/consul-server/entrypoint.sh:/entrypoint.sh
+    # command: /bin/sh /entrypoint.sh
+
