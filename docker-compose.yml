@@ -7,8 +7,8 @@ consul-agent:
     volumes:
         - ./docker-consul/0.5/consul-agent/config:/config
         - ./docker-consul/0.5/consul-agent/entrypoint.sh:/entrypoint.sh
-    # command: /bin/sh /entrypoint.sh
-    command: tail -f /dev/null
+    command: /bin/sh /entrypoint.sh
+    # command: tail -f /dev/null
 
 consul-server:
     image: consul-server
